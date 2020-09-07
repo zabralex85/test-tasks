@@ -1,0 +1,33 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: bitcoin-testnet-box
+  labels:
+    app: bitcoin-testnet-box
+spec:
+  template:
+    metadata:
+      labels:
+        name: bitcoin-testnet-box
+    spec:
+      containers:
+      - name: bitcoin-testnet-box
+        image: freewil/bitcoin-testnet-box:latest
+        ports:
+        - containerPort: 19001
+        - containerPort: 19011
+        command: ["/bin/sh", "-c"]
+        args: [ "make start; sleep infinity" ]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bitcoin-testnet-box-service
+spec:
+  ports:
+  - name: bitcoin-testnet-box
+    port: 19011
+    targetPort: 19011
+  selector:
+    name: bitcoin-testnet-box
+  type: LoadBalancer

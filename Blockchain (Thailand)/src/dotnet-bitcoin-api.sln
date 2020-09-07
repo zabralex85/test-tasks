@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28711.60
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnet-bitcoin-api", "dotnet-bitcoin-api\dotnet-bitcoin-api.csproj", "{8E61FEBB-B61A-4E7D-BB44-34B279332D2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnet-bitcoin-data-layer", "dotnet-bitcoin-api.data-layer\dotnet-bitcoin-data-layer.csproj", "{38564A29-A5CE-4DF3-86F4-A551DEE8A319}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnet-bitcoin-tests", "dotnet-bitcoin-tests\dotnet-bitcoin-tests.csproj", "{20E78C62-D9C0-4D0B-9CC7-EC00AB12DCEB}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "dotnet-bitcoin-db", "dotnet-bitcoin-db\dotnet-bitcoin-db.sqlproj", "{E360ED0B-6905-4038-A994-8C54CBF4959D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnet-bitcoin-api.business-layer", "dotnet-bitcoin-api.business-layer\dotnet-bitcoin-api.business-layer.csproj", "{2BCBD2AE-A188-4A37-B990-1CA018472E22}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{993C7FB3-2FD8-4D46-9C79-C056B9A7C10D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitcoinLib", "..\libs\bitcoinlib\src\BitcoinLib\BitcoinLib.csproj", "{2AFAF8CE-77C7-4983-A989-DB3029DDF9A1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8E61FEBB-B61A-4E7D-BB44-34B279332D2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E61FEBB-B61A-4E7D-BB44-34B279332D2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E61FEBB-B61A-4E7D-BB44-34B279332D2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E61FEBB-B61A-4E7D-BB44-34B279332D2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38564A29-A5CE-4DF3-86F4-A551DEE8A319}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38564A29-A5CE-4DF3-86F4-A551DEE8A319}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38564A29-A5CE-4DF3-86F4-A551DEE8A319}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38564A29-A5CE-4DF3-86F4-A551DEE8A319}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20E78C62-D9C0-4D0B-9CC7-EC00AB12DCEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20E78C62-D9C0-4D0B-9CC7-EC00AB12DCEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20E78C62-D9C0-4D0B-9CC7-EC00AB12DCEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20E78C62-D9C0-4D0B-9CC7-EC00AB12DCEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E360ED0B-6905-4038-A994-8C54CBF4959D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E360ED0B-6905-4038-A994-8C54CBF4959D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E360ED0B-6905-4038-A994-8C54CBF4959D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{E360ED0B-6905-4038-A994-8C54CBF4959D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E360ED0B-6905-4038-A994-8C54CBF4959D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E360ED0B-6905-4038-A994-8C54CBF4959D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2BCBD2AE-A188-4A37-B990-1CA018472E22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BCBD2AE-A188-4A37-B990-1CA018472E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BCBD2AE-A188-4A37-B990-1CA018472E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BCBD2AE-A188-4A37-B990-1CA018472E22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AFAF8CE-77C7-4983-A989-DB3029DDF9A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AFAF8CE-77C7-4983-A989-DB3029DDF9A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AFAF8CE-77C7-4983-A989-DB3029DDF9A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AFAF8CE-77C7-4983-A989-DB3029DDF9A1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2AFAF8CE-77C7-4983-A989-DB3029DDF9A1} = {993C7FB3-2FD8-4D46-9C79-C056B9A7C10D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C7A43222-F002-43A9-B3A7-CD51F5FB8D58}
+	EndGlobalSection
+EndGlobal

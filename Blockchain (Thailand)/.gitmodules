@@ -1,0 +1,3 @@
+[submodule "libs/bitcoinlib"]
+	path = libs/bitcoinlib
+	url = git@github.com:zabralex85/bitcoinlib.git

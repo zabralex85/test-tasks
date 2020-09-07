@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>dotnet_bitcoin_api.business_layer</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\libs\bitcoinlib\src\BitcoinLib\BitcoinLib.csproj" />
+  </ItemGroup>
+
+</Project>

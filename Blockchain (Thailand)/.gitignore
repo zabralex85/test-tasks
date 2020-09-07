@@ -1,0 +1,7 @@
+v16
+obj
+*.user
+
+src/dotnet-bitcoin-api/bin/Debug/netcoreapp2\.2/
+netcoreapp2.2
+Debug
