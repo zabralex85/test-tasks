@@ -1,0 +1,8 @@
+/src/Mars.WalkingRobots.Lib/bin/Debug/netstandard2.0
+/src/Mars.WalkingRobots.Lib/obj
+/src/Mars.WalkingRobots/bin/Debug/netcoreapp3.1
+netcoreapp3.1
+obj
+v16
+DesignTimeBuild
+*.user
