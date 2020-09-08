@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ABB.NTier.WebApi", "src\ABB.3Tier.WebApi\ABB.NTier.WebApi.csproj", "{96EB9D25-D7B2-4053-8387-8D470788B8FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3AC1AE81-2966-4838-A2A9-0F747364F983}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABB.NTier.Database.Models", "src\ABB.3Tier.Database.Models\ABB.NTier.Database.Models.csproj", "{4039985D-551F-41BE-91CD-F216A580F070}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABB.NTier.Database", "src\ABB.3Tier.Database\ABB.NTier.Database.csproj", "{50FFEA1D-BC4D-4D52-8D93-2CC33179C750}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABB.NTier.WebApi.Tests", "src\ABB.3Tier.WebApi.Tests\ABB.NTier.WebApi.Tests.csproj", "{363C8995-35C0-4B4F-B92C-3E1BDE336E34}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{0D587D8C-3EE3-4E39-8AD1-00B9B25E61E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ui", "ui", "{B8492827-251F-4584-90CD-21C8B167D8A0}"
+	ProjectSection(SolutionItems) = preProject
+		src\ABB.3Tier.WebUI\Dockerfile = src\ABB.3Tier.WebUI\Dockerfile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{BB5573FA-522E-44DA-B626-0324EDBAD056}"
+	ProjectSection(SolutionItems) = preProject
+		docs\DesktopWebAppCandidatePracticalTest.pdf = docs\DesktopWebAppCandidatePracticalTest.pdf
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{24904B9D-BBC1-44B0-8D9B-B7D1B8D84460}"
+	ProjectSection(SolutionItems) = preProject
+		data\DesktopWebAppCandidatePracticalTestData.xlsx = data\DesktopWebAppCandidatePracticalTestData.xlsx
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96EB9D25-D7B2-4053-8387-8D470788B8FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96EB9D25-D7B2-4053-8387-8D470788B8FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96EB9D25-D7B2-4053-8387-8D470788B8FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96EB9D25-D7B2-4053-8387-8D470788B8FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4039985D-551F-41BE-91CD-F216A580F070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4039985D-551F-41BE-91CD-F216A580F070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4039985D-551F-41BE-91CD-F216A580F070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4039985D-551F-41BE-91CD-F216A580F070}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50FFEA1D-BC4D-4D52-8D93-2CC33179C750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50FFEA1D-BC4D-4D52-8D93-2CC33179C750}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50FFEA1D-BC4D-4D52-8D93-2CC33179C750}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50FFEA1D-BC4D-4D52-8D93-2CC33179C750}.Release|Any CPU.Build.0 = Release|Any CPU
+		{363C8995-35C0-4B4F-B92C-3E1BDE336E34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{363C8995-35C0-4B4F-B92C-3E1BDE336E34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{363C8995-35C0-4B4F-B92C-3E1BDE336E34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{363C8995-35C0-4B4F-B92C-3E1BDE336E34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D587D8C-3EE3-4E39-8AD1-00B9B25E61E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D587D8C-3EE3-4E39-8AD1-00B9B25E61E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D587D8C-3EE3-4E39-8AD1-00B9B25E61E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D587D8C-3EE3-4E39-8AD1-00B9B25E61E2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B8492827-251F-4584-90CD-21C8B167D8A0} = {3AC1AE81-2966-4838-A2A9-0F747364F983}
+		{BB5573FA-522E-44DA-B626-0324EDBAD056} = {3AC1AE81-2966-4838-A2A9-0F747364F983}
+		{24904B9D-BBC1-44B0-8D9B-B7D1B8D84460} = {3AC1AE81-2966-4838-A2A9-0F747364F983}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {76804080-B045-4FB1-9E66-513B166AAA28}
+	EndGlobalSection
+EndGlobal

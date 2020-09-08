@@ -1,0 +1,38 @@
+version: '3.4'
+
+services:
+  jaeger:
+    image: jaegertracing/all-in-one
+    ports:
+     - "16686:16686"
+
+  db:
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    ports:
+        - "1433:1433"
+    environment:
+        SA_PASSWORD: "P@ssw0rd"
+        ACCEPT_EULA: "Y"
+
+  abb.ntier.webapi:
+    image: ${DOCKER_REGISTRY-}abbntierwebapi
+    build:
+      context: .
+      dockerfile: src/ABB.3Tier.WebApi/Dockerfile
+    environment:
+      CONNECTIONSTRINGS_MOTORSCONTEXT: "db"
+      JAEGER__JAEGER_AGENT_HOST: "jaeger"
+    depends_on:
+      - db
+
+  ui:
+    image: angular-nginx-docker
+    build:
+      context: .
+      dockerfile: src/ABB.3Tier.WebUI/Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 8080:8080
+    links:
+      - abb.ntier.webapi
