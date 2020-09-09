@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using ABB.NTier.Database.Etl;
 using ABB.NTier.Database.Models;
+using ABB.NTier.Database.Models.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -69,9 +72,67 @@ namespace ABB.NTier.Database.Configurations
             builder.HasData(data);
         }
 
-        private IEnumerable<Motor> GetInitialData()
+        private static IEnumerable<Motor> GetInitialData()
         {
-            throw new System.NotImplementedException();
+            List<Motor> motors = new List<Motor>();
+
+            string file = System.IO.Path.Combine(Environment.CurrentDirectory, "Data\\initial.xlsx");
+            var table = Extractor.GetInitialData(file, "Motor name",
+                new[]
+                {
+                    "Type",
+                    "Max power (kW)",
+                    "Voltage (V)",
+                    "Current (A)",
+                    "Fuel consumtion per hour(l/h)",
+                    "Max torque at (rpm)",
+                    "Max presure (bar)",
+                    "Displacement (cm3/rev)"
+                },
+                1);
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                var motor = new Motor();
+
+                for (int j = 0; j < table.Columns.Count; j++)
+                {
+                    string columnName = table.Columns[j].ColumnName;
+                    var val = table.Rows[i][columnName].ToString();
+
+                    switch (columnName)
+                    {
+                        case "Type":
+                            motor.MotorTypeId = (MotorType) Enum.Parse(typeof(MotorType), val);
+                            break;
+                        case "Max power (kW)":
+                            if(!string.IsNullOrEmpty(val)) motor.CurrentAmper = float.Parse(val);
+                            break;
+                        case "Voltage (V)":
+                            if (!string.IsNullOrEmpty(val)) motor.CurrentAmper = float.Parse(val);
+                            break;
+                        case "Current (A)":
+                            if (!string.IsNullOrEmpty(val)) motor.CurrentAmper = float.Parse(val);
+                            break;
+                        case "Fuel consumtion per hour(l/h)":
+                            if (!string.IsNullOrEmpty(val)) motor.FuelConsumption = float.Parse(val);
+                            break;
+                        case "Max torque at (rpm)":
+                            if (!string.IsNullOrEmpty(val)) motor.MaxTorque = float.Parse(val);
+                            break;
+                        case "Max presure (bar)":
+                            if (!string.IsNullOrEmpty(val)) motor.MaxPressure = float.Parse(val);
+                            break;
+                        case "Displacement (cm3/rev)":
+                            if (!string.IsNullOrEmpty(val)) motor.Displacement = float.Parse(val);
+                            break;
+                    }
+                }
+
+                motors.Add(motor);
+            }
+
+            return motors;
         }
     }
 }

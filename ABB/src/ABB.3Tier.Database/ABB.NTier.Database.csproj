@@ -7,10 +7,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ABB.3Tier.Database.Models\ABB.NTier.Database.Models.csproj" />
+    <ProjectReference Include="..\ABB.NTier.Database.Extractor\ABB.NTier.Database.Etl.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ClosedXML" Version="0.95.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
   </ItemGroup>
 

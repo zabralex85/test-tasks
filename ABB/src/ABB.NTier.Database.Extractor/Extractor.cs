@@ -6,15 +6,15 @@ using ClosedXML.Excel;
 
 namespace ABB.NTier.Database.Etl
 {
-    public class Extractor
+    public static class Extractor
     {
-        public DataTable GetInitialData(string filePath)
+        public static DataTable GetInitialData(string filePath, string mainColumn, string[] columns, int sheetNumber)
         {
             DataTable dataTable;
 
             using (var workBook = new XLWorkbook(filePath))
             {
-                var workSheet = workBook.Worksheet(0);
+                var workSheet = workBook.Worksheet(sheetNumber);
                 var firstRowUsed = workSheet.FirstRowUsed();
                 var firstPossibleAddress = workSheet.Row(firstRowUsed.RowNumber()).FirstCell().Address;
                 var lastPossibleAddress = workSheet.LastCellUsed().Address;
@@ -25,48 +25,46 @@ namespace ABB.NTier.Database.Etl
                 var table = range.AsTable();
 
                 //Specify what are all the Columns you need to get from Excel
-                var dataList = new List<string[]>
+                var dataList = new List<string[]>();
+                dataList.Add(table.DataRange.Rows().Select(tableRow => tableRow.Field(mainColumn).GetString()).ToArray());
+
+                foreach (var column in columns)
                 {
-                    table.DataRange.Rows().Select(tableRow => tableRow.Field("Solution Number").GetString()).ToArray(),
-                    table.DataRange.Rows().Select(tableRow => tableRow.Field("Name").GetString()).ToArray(),
-                    table.DataRange.Rows().Select(tableRow => tableRow.Field("Date").GetString()).ToArray()
-                };
-
-                //Convert List to DataTable
-                dataTable = ConvertListToDataTable(dataList);
-
-                //To get unique column values, to avoid duplication
-                var uniqueCols = dataTable.DefaultView.ToTable(true, "Solution Number");
-
-                //Remove Empty Rows or any specify rows as per your requirement
-                for (var i = uniqueCols.Rows.Count - 1; i >= 0; i--)
-                {
-                    var dr = uniqueCols.Rows[i];
-                    if (dr != null && ((string)dr["Solution Number"] == "None" || (string)dr["Title"] == ""))
-                        dr.Delete();
+                    dataList.Add(table.DataRange.Rows().Select(tableRow => tableRow.Field(column).GetString()).ToArray());
                 }
 
-                Console.WriteLine("Total number of unique solution number in Excel : " + uniqueCols.Rows.Count);
+                //Convert List to DataTable
+                dataTable = ConvertListToDataTable(dataList, mainColumn, columns);
+
+                Console.WriteLine("Total number of unique solution number in Excel : " + dataTable.Rows.Count);
             }
 
             return dataTable;
         }
 
-        private DataTable ConvertListToDataTable(IReadOnlyList<string[]> list)
+        private static DataTable ConvertListToDataTable(IReadOnlyList<string[]> list, string mainColumn, IReadOnlyList<string> columns)
         {
             var table = new DataTable("CustomTable");
             var rows = list.Select(array => array.Length).Concat(new[] { 0 }).Max();
+            
+            table.Columns.Add(mainColumn);
 
-            table.Columns.Add("Solution Number");
-            table.Columns.Add("Name");
-            table.Columns.Add("Date");
-
+            foreach (var column in columns)
+            {
+                table.Columns.Add(column);
+            }
+            
             for (var j = 0; j < rows; j++)
             {
                 var row = table.NewRow();
-                row["Solution Number"] = list[0][j];
-                row["Name"] = list[1][j];
-                row["Date"] = list[2][j];
+                row[mainColumn] = list[0][j];
+
+                for (var index = 0; index < columns.Count; index++)
+                {
+                    var column = columns[index];
+                    row[column] = list[index + 1][j];
+                }
+
                 table.Rows.Add(row);
             }
             return table;

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Linq;
+using System.Text.RegularExpressions;
+using ABB.NTier.Database.Etl;
 using ABB.NTier.Database.Models;
-using ClosedXML.Excel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -50,9 +48,54 @@ namespace ABB.NTier.Database.Configurations
             builder.HasData(data);
         }
 
-        private IEnumerable<MeasuredValue> GetInitialData()
+        private static IEnumerable<MeasuredValue> GetInitialData()
         {
-            throw new NotImplementedException();
+            List<MeasuredValue> measuredValues = new List<MeasuredValue>();
+
+            string file = System.IO.Path.Combine(Environment.CurrentDirectory, "Data\\initial.xlsx");
+            var table = Extractor.GetInitialData(file, "Time of measurement",
+                new[]
+                {
+                    "Motor",
+                    "Actual current (A)",
+                    "Actual revs. (rpm)",
+                    "Actual pressure (bar)"
+                },
+                2);
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                var measuredValue = new MeasuredValue();
+
+                for (int j = 0; j < table.Columns.Count; j++)
+                {
+                    string columnName = table.Columns[j].ColumnName;
+                    var val = table.Rows[i][columnName].ToString();
+
+                    switch (columnName)
+                    {
+                        case "Motor":
+                            measuredValue.MotorId = long.Parse(Regex.Match(val, @"\d").Value);
+                            break;
+                        case "Time of measurement":
+                            if (!string.IsNullOrEmpty(val)) measuredValue.LastUpdated = DateTime.Parse(val);
+                            break;
+                        case "Actual current (A)":
+                            if (!string.IsNullOrEmpty(val)) measuredValue.ActualAmper = float.Parse(val);
+                            break;
+                        case "Actual pressure (bar)":
+                            if (!string.IsNullOrEmpty(val)) measuredValue.ActualPressure = float.Parse(val);
+                            break;
+                        case "Actual revs. (rpm)":
+                            if (!string.IsNullOrEmpty(val)) measuredValue.ActualRevsRpm = float.Parse(val);
+                            break;
+                    }
+                }
+
+                measuredValues.Add(measuredValue);
+            }
+
+            return measuredValues;
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace ABB.NTier.Database.Models
 {
@@ -11,7 +10,6 @@ namespace ABB.NTier.Database.Models
         public float?   ActualRevsRpm   { get; set; }
         public float?   ActualPressure  { get; set; }
         public DateTime LastUpdated     { get; set; }
-
-        public Motor Motor { get; set; }
+        public Motor    Motor           { get; set; }
     }
 }
