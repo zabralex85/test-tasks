@@ -18,7 +18,7 @@ services:
     image: ${DOCKER_REGISTRY-}abbntierwebapi
     build:
       context: .
-      dockerfile: src/ABB.3Tier.WebApi/Dockerfile
+      dockerfile: src/ABB.NTier.WebApi/Dockerfile
     environment:
       CONNECTIONSTRINGS_MOTORSCONTEXT: "db"
       JAEGER__JAEGER_AGENT_HOST: "jaeger"
@@ -33,7 +33,7 @@ services:
       - .nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - .nginx/proxy.conf:/etc/nginx/proxy.conf:ro
       - .nginx/logs/:/var/log/nginx/
-      - ./src/ABB.3Tier.WebUI/dist:/usr/share/nginx/html:ro
+      - ./src/ABB.NTier.WebUI/dist:/usr/share/nginx/html:ro
     ports:
       - '8080:80'
     depends_on:
