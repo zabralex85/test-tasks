@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ABB.3Tier.Database\ABB.NTier.Database.csproj" />
+    <ProjectReference Include="..\ABB.NTier.Database\ABB.NTier.Database.csproj" />
   </ItemGroup>
 
 
