@@ -1,10 +1,13 @@
-using System.Collections.Generic;
 using System.Linq;
+using ABB.NTier.Database;
 using ABB.NTier.WebApi.Constants;
+using ABB.NTier.WebApi.Services;
+using ABB.NTier.WebApi.Utils;
 using Boxed.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -43,29 +46,13 @@ namespace ABB.NTier.WebApi
         /// </summary>
         public virtual void ConfigureServices(IServiceCollection services)
         {
-            //services
-            //    .AddOptions<WeedmapsClientOptions>()
-            //    .Bind(_configuration.GetSection("WeedmapsClient"))
-            //    .ValidateDataAnnotations();
+            services.AddSingleton<MotorManageService>();
 
-            //services.AddSingleton<WeedmapsHttpClient>();
-            //services.AddSingleton<IWeedmapsClient, WeedmapsClient>(provider =>
-            //{
-            //    var logger = provider.GetService<ILogger<IWeedmapsClient>>();
-            //    var httpClient = provider.GetService<WeedmapsHttpClient>();
-            //    var apiUrl = provider.GetService<IOptions<WeedmapsClientOptions>>();
-            //    return new WeedmapsClient(logger, httpClient, apiUrl.Value.Url);
-            //});
-
-            //services.AddEntityFrameworkSqlServer()
-            //    .AddDbContext<SweedContext>(opt =>
-            //    {
-            //        opt.UseSqlServer(_configuration.GetConnectionString("SweedContext"));
-            //    })
-            //    .AddDbContext<StorageContext>(opt =>
-            //    {
-            //        opt.UseSqlServer(_configuration.GetConnectionString("StorageContext"));
-            //    });
+            services.AddEntityFrameworkSqlServer()
+                .AddDbContext<StorageContext>(opt =>
+                {
+                    opt.UseSqlServer(_configuration.GetConnectionString("StorageContext"));
+                });
 
             services
                 .AddCustomCaching()
@@ -88,9 +75,7 @@ namespace ABB.NTier.WebApi
         /// </summary>
         public virtual void Configure(IApplicationBuilder application)
         {
-            //application.EnsureDatabaseMigrate<StorageContext>();
-
-            
+            application.EnsureDatabaseMigrate<StorageContext>();
 
             application
                 .UseIf(
