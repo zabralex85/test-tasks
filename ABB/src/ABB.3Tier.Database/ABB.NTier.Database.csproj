@@ -5,4 +5,8 @@
     <RootNamespace>ABB.NTier.Database</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ABB.3Tier.Database.Models\ABB.NTier.Database.Models.csproj" />
+  </ItemGroup>
+
 </Project>

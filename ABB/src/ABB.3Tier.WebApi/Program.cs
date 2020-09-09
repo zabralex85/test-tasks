@@ -101,13 +101,23 @@ namespace ABB.NTier.WebApi
                     args != null,
                     x => x.AddCommandLine(args));
 
-        private static Logger CreateLogger(IHost host) =>
-            new LoggerConfiguration()
+        private static Logger CreateLogger(IHost host)
+        {
+#if DEBUG
+            return new LoggerConfiguration()
+                .Enrich.WithProperty("Application", GetAssemblyProductName())
+                .WriteTo.Console()
+                .CreateLogger();
+#else
+
+            return new LoggerConfiguration()
                 .ReadFrom.Configuration(host.Services.GetRequiredService<IConfiguration>())
                 .Enrich.WithProperty("Application", GetAssemblyProductName())
                 .CreateLogger();
+#endif
+        }
 
         private static string GetAssemblyProductName() =>
-            Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyProductAttribute>().Product;
+            Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyProductAttribute>()?.Product;
     }
 }

@@ -6,6 +6,7 @@
     <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
+    <Description>ABB.NTier.WebApi</Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,6 +41,10 @@
 
   <ItemGroup>
     <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ABB.3Tier.Database\ABB.NTier.Database.csproj" />
   </ItemGroup>
 
 

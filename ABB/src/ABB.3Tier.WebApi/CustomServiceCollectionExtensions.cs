@@ -130,9 +130,10 @@ namespace ABB.NTier.WebApi
             options =>
             {
                 var assembly = typeof(Startup).Assembly;
-                var assemblyProduct = assembly.GetCustomAttribute<AssemblyProductAttribute>().Product;
-                var assemblyDescription = assembly.GetCustomAttribute<AssemblyDescriptionAttribute>().Description;
+                var assemblyProduct = assembly.GetCustomAttribute<AssemblyProductAttribute>()?.Product;
+                var assemblyDescription = assembly.GetCustomAttribute<AssemblyDescriptionAttribute>()?.Description;
 
+                options.Title = assemblyProduct;
                 options.DocumentName = assemblyProduct;
                 options.Description = assemblyDescription;
             });

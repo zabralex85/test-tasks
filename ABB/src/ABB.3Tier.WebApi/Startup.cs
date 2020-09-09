@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using ABB.NTier.WebApi.Constants;
 using Boxed.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -88,6 +90,8 @@ namespace ABB.NTier.WebApi
         {
             //application.EnsureDatabaseMigrate<StorageContext>();
 
+            
+
             application
                 .UseIf(
                     _webHostEnvironment.IsDevelopment(),
@@ -114,7 +118,19 @@ namespace ABB.NTier.WebApi
                             .MapHealthChecks("/status/self", new HealthCheckOptions {Predicate = _ => false})
                             .RequireCors(CorsPolicyName.AllowAny);
                     })
-                .UseOpenApi()
+                .UseOpenApi(c =>
+                {
+                    // for reverse proxy
+                    c.PostProcess = (document, request) =>
+                    {
+                        if (!new[] { "X-Forwarded-Host", "X-Forwarded-Path" }.All(k => request.Headers.ContainsKey(k)))
+                        {
+                            return;
+                        }
+                        document.Host = request.Headers["X-Forwarded-Host"].First();
+                        document.BasePath = request.Headers["X-Forwarded-Path"].First();
+                    };
+                })
                 .UseReDoc(c=>c.Path="/docs")
                 .UseSwaggerUi3();
         }
