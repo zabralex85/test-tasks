@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alemira.RandomData.Lib", "Alemira.RandomData.Lib\Alemira.RandomData.Lib.csproj", "{13A87D9E-1E4D-4CC6-8DC5-17D3AB12CA23}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Alemira.RandomData", "Alemira.RandomData", "{EC5445D5-2CA9-4D63-A4BA-A12026E75BA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alemira.RandomData.Sample", "Alemira.RandomData.Sample\Alemira.RandomData.Sample.csproj", "{A9B09F77-A50A-405B-B6C0-4D434CC2C8DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alemira.RandomData.Tests", "Alemira.RandomData.Tests\Alemira.RandomData.Tests.csproj", "{21897856-E748-43C5-A4A9-ADC38CF2E2B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Alemira.SimpleCrud", "Alemira.SimpleCrud", "{C5982A41-17F6-4BB0-A3A7-9CA3032341C8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{13A87D9E-1E4D-4CC6-8DC5-17D3AB12CA23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13A87D9E-1E4D-4CC6-8DC5-17D3AB12CA23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13A87D9E-1E4D-4CC6-8DC5-17D3AB12CA23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13A87D9E-1E4D-4CC6-8DC5-17D3AB12CA23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9B09F77-A50A-405B-B6C0-4D434CC2C8DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9B09F77-A50A-405B-B6C0-4D434CC2C8DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9B09F77-A50A-405B-B6C0-4D434CC2C8DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9B09F77-A50A-405B-B6C0-4D434CC2C8DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21897856-E748-43C5-A4A9-ADC38CF2E2B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21897856-E748-43C5-A4A9-ADC38CF2E2B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21897856-E748-43C5-A4A9-ADC38CF2E2B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21897856-E748-43C5-A4A9-ADC38CF2E2B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{13A87D9E-1E4D-4CC6-8DC5-17D3AB12CA23} = {EC5445D5-2CA9-4D63-A4BA-A12026E75BA5}
+		{A9B09F77-A50A-405B-B6C0-4D434CC2C8DA} = {EC5445D5-2CA9-4D63-A4BA-A12026E75BA5}
+		{21897856-E748-43C5-A4A9-ADC38CF2E2B7} = {EC5445D5-2CA9-4D63-A4BA-A12026E75BA5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC3E6A73-F0BA-4B5C-9C08-5BFD6EC30B67}
+	EndGlobalSection
+EndGlobal
