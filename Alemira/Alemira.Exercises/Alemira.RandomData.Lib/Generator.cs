@@ -32,7 +32,7 @@ namespace Alemira.RandomData.Lib
         }
 
         /// <summary>
-        /// Genearates Random string, for secure strings - use RNGCryptoServiceProvider
+        /// Generates Random string, for secure strings - use RNGCryptoServiceProvider
         /// </summary>
         /// <param name="maxLen"></param>
         /// <returns></returns>

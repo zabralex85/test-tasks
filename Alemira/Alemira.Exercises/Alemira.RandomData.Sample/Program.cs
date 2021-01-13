@@ -11,6 +11,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using Alemira.RandomData.Lib;
+using Alemira.RandomData.Lib.Collections;
+using Alemira.RandomData.Lib.Interfaces;
 
 namespace Alemira.RandomData.Sample
 {
@@ -42,14 +44,17 @@ namespace Alemira.RandomData.Sample
             Console.WriteLine(Environment.NewLine);
 
             TestSimpleStringCollection(fileOnePath, fileSecondPath, someRealString);
+            Console.WriteLine(Environment.NewLine);
+
+            TestSortedStringCollection(fileOnePath, fileSecondPath, someRealString);
         }
 
-        private static void TestSimpleStringCollection(string fileOnePath, string fileSecondPath, string someRealString)
+        private static void TestSortedStringCollection(string fileOnePath, string fileSecondPath, string someRealString)
         {
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
-            var collectionOne = new SimpleStringCollection(fileOnePath);
+            ICustomCollection collection = new SimpleSortedStringCollection(fileOnePath);
 
             sw.Stop();
             Console.WriteLine($"Init Collection Time: {sw.Elapsed.TotalMilliseconds}");
@@ -57,17 +62,17 @@ namespace Alemira.RandomData.Sample
             sw.Reset();
             sw.Start();
 
-            collectionOne.AppendData(fileSecondPath);
+            collection.AppendData(fileSecondPath);
             Console.WriteLine($"Append Collection Time: {sw.Elapsed.TotalMilliseconds}");
             sw.Stop();
 
             sw.Reset();
             sw.Start();
 
-            var entry = collectionOne.Find(x => x == someRealString);
+            var entry = collection.Find(someRealString);
             Debug.WriteLine($"entry:{entry}");
 
-            var nextEntry = collectionOne.FindAfter(x => x == someRealString, saveOriginalList: true);
+            var nextEntry = collection.FindAfter(someRealString, saveOriginalList: true);
             Debug.WriteLine($"next entry with copy:{nextEntry}");
 
             sw.Stop();
@@ -76,7 +81,46 @@ namespace Alemira.RandomData.Sample
             sw.Reset();
             sw.Start();
 
-            var nextEntryWithoutCopy = collectionOne.FindAfter(x => x == someRealString, saveOriginalList: false);
+            var nextEntryWithoutCopy = collection.FindAfter(someRealString, saveOriginalList: false);
+            Debug.WriteLine($"next entry without copy:{nextEntryWithoutCopy}");
+            sw.Stop();
+
+            Console.WriteLine($"FindAfter without saving original list: {sw.Elapsed.TotalMilliseconds}");
+        }
+
+        private static void TestSimpleStringCollection(string fileOnePath, string fileSecondPath, string someRealString)
+        {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
+            ICustomCollection collection = new SimpleStringCollection(fileOnePath);
+
+            sw.Stop();
+            Console.WriteLine($"Init Collection Time: {sw.Elapsed.TotalMilliseconds}");
+
+            sw.Reset();
+            sw.Start();
+
+            collection.AppendData(fileSecondPath);
+            Console.WriteLine($"Append Collection Time: {sw.Elapsed.TotalMilliseconds}");
+            sw.Stop();
+
+            sw.Reset();
+            sw.Start();
+
+            var entry = collection.Find(someRealString);
+            Debug.WriteLine($"entry:{entry}");
+
+            var nextEntry = collection.FindAfter(someRealString, saveOriginalList: true);
+            Debug.WriteLine($"next entry with copy:{nextEntry}");
+
+            sw.Stop();
+            Console.WriteLine($"FindAfter with saving original list: {sw.Elapsed.TotalMilliseconds}");
+
+            sw.Reset();
+            sw.Start();
+
+            var nextEntryWithoutCopy = collection.FindAfter(someRealString, saveOriginalList: false);
             Debug.WriteLine($"next entry without copy:{nextEntryWithoutCopy}");
             sw.Stop();
 
