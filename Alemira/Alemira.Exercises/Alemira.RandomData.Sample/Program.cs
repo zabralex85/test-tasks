@@ -38,31 +38,49 @@ namespace Alemira.RandomData.Sample
             _generator.Generate(100000, 100, fileSecondPath);
 
             string someRealString = Utils.GetRandomStringFromFile(fileOnePath, _random);
+            Console.WriteLine($"Real String:{someRealString}");
+            Console.WriteLine(Environment.NewLine);
 
-            var collectionOne = new SimpleStringCollection(fileOnePath);
-            collectionOne.AppendData(fileSecondPath);
+            TestSimpleStringCollection(fileOnePath, fileSecondPath, someRealString);
+        }
 
-            var entry = collectionOne.Find(x => x == someRealString);
-            Console.WriteLine($"entry:{entry}");
-
+        private static void TestSimpleStringCollection(string fileOnePath, string fileSecondPath, string someRealString)
+        {
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
-            var nextEntry = collectionOne.FindAfter(x => x == someRealString, saveOriginalList: true);
-            Console.WriteLine($"next entry with copy:{nextEntry}");
+            var collectionOne = new SimpleStringCollection(fileOnePath);
 
             sw.Stop();
-            Console.WriteLine("FindAfterWithCopy:" + sw.Elapsed.TotalMilliseconds);
+            Console.WriteLine($"Init Collection Time: {sw.Elapsed.TotalMilliseconds}");
 
             sw.Reset();
-
             sw.Start();
-            var nextEntryWithoutCopy = collectionOne.FindAfter(x => x == someRealString, saveOriginalList: false);
-            Console.WriteLine($"next entry without copy:{nextEntryWithoutCopy}");
-            sw.Stop();
-            Console.WriteLine("FindAfterWithoutCopy:" + sw.Elapsed.TotalMilliseconds);
 
-            Console.WriteLine(someRealString);
+            collectionOne.AppendData(fileSecondPath);
+            Console.WriteLine($"Append Collection Time: {sw.Elapsed.TotalMilliseconds}");
+            sw.Stop();
+
+            sw.Reset();
+            sw.Start();
+
+            var entry = collectionOne.Find(x => x == someRealString);
+            Debug.WriteLine($"entry:{entry}");
+
+            var nextEntry = collectionOne.FindAfter(x => x == someRealString, saveOriginalList: true);
+            Debug.WriteLine($"next entry with copy:{nextEntry}");
+
+            sw.Stop();
+            Console.WriteLine($"FindAfter with saving original list: {sw.Elapsed.TotalMilliseconds}");
+
+            sw.Reset();
+            sw.Start();
+
+            var nextEntryWithoutCopy = collectionOne.FindAfter(x => x == someRealString, saveOriginalList: false);
+            Debug.WriteLine($"next entry without copy:{nextEntryWithoutCopy}");
+            sw.Stop();
+
+            Console.WriteLine($"FindAfter without saving original list: {sw.Elapsed.TotalMilliseconds}");
         }
     }
 }
