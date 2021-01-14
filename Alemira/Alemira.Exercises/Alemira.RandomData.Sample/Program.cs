@@ -47,12 +47,29 @@ namespace Alemira.RandomData.Sample
             TestSimpleSortedStringCollection(fileOnePath, fileSecondPath, someRealString);
             Console.WriteLine(Environment.NewLine);
 
-            //Console.WriteLine("AdvancedCollection<string>");
-            //TestAdvancedCollection(fileOnePath, fileSecondPath, someRealString);
-            //Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("AdvancedCollection<string>");
+            TestAdvancedCollection(fileOnePath, fileSecondPath, someRealString);
+            Console.WriteLine(Environment.NewLine);
+
+            Console.WriteLine("FastSearchStringCollection<string>");
+            TestFastSearchStringCollection(fileOnePath, fileSecondPath, someRealString);
+            Console.WriteLine(Environment.NewLine);
 
             File.Delete(fileOnePath);
             File.Delete(fileSecondPath);
+        }
+
+        private static void TestFastSearchStringCollection(string fileOnePath, string fileSecondPath, string someRealString)
+        {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
+            ICustomCollection collection = new FastSearchStringCollection(fileOnePath);
+
+            sw.Stop();
+            Console.WriteLine($"Init Collection Time: {sw.Elapsed.TotalMilliseconds}");
+
+            TestAppendAndSearchInCollection(collection, fileSecondPath, someRealString);
         }
 
         /// <summary>
@@ -63,18 +80,18 @@ namespace Alemira.RandomData.Sample
         /// <param name="fileOnePath"></param>
         /// <param name="fileSecondPath"></param>
         /// <param name="someRealString"></param>
-        //private static void TestAdvancedCollection(string fileOnePath, string fileSecondPath, string someRealString)
-        //{
-        //    Stopwatch sw = new Stopwatch();
-        //    sw.Start();
+        private static void TestAdvancedCollection(string fileOnePath, string fileSecondPath, string someRealString)
+        {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
 
-        //    ICustomCollection collection = new AdvancedStringCollection(fileOnePath);
+            ICustomCollection collection = new AdvancedStringCollection(fileOnePath);
 
-        //    sw.Stop();
-        //    Console.WriteLine($"Init Collection Time: {sw.Elapsed.TotalMilliseconds}");
+            sw.Stop();
+            Console.WriteLine($"Init Collection Time: {sw.Elapsed.TotalMilliseconds}");
 
-        //    TestAppendAndSearchInCollection(collection, fileSecondPath, someRealString);
-        //}
+            TestAppendAndSearchInCollection(collection, fileSecondPath, someRealString);
+        }
 
         private static void TestSimpleSortedStringCollection(string fileOnePath, string fileSecondPath, string someRealString)
         {
