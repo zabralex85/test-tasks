@@ -9,10 +9,12 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using Alemira.RandomData.Lib;
 using Alemira.RandomData.Lib.Collections;
 using Alemira.RandomData.Lib.Interfaces;
+using KTrie;
 
 namespace Alemira.RandomData.Sample
 {
@@ -44,7 +46,35 @@ namespace Alemira.RandomData.Sample
             Console.WriteLine("SortedSet<string>");
             TestSimpleSortedStringCollection(fileOnePath, fileSecondPath, someRealString);
             Console.WriteLine(Environment.NewLine);
+
+            //Console.WriteLine("AdvancedCollection<string>");
+            //TestAdvancedCollection(fileOnePath, fileSecondPath, someRealString);
+            //Console.WriteLine(Environment.NewLine);
+
+            File.Delete(fileOnePath);
+            File.Delete(fileSecondPath);
         }
+
+        /// <summary>
+        /// Maybe can use Trie .. need investigation ...
+        /// https://en.wikipedia.org/wiki/Trie
+        /// https://github.com/kpol/trie
+        /// </summary>
+        /// <param name="fileOnePath"></param>
+        /// <param name="fileSecondPath"></param>
+        /// <param name="someRealString"></param>
+        //private static void TestAdvancedCollection(string fileOnePath, string fileSecondPath, string someRealString)
+        //{
+        //    Stopwatch sw = new Stopwatch();
+        //    sw.Start();
+
+        //    ICustomCollection collection = new AdvancedStringCollection(fileOnePath);
+
+        //    sw.Stop();
+        //    Console.WriteLine($"Init Collection Time: {sw.Elapsed.TotalMilliseconds}");
+
+        //    TestAppendAndSearchInCollection(collection, fileSecondPath, someRealString);
+        //}
 
         private static void TestSimpleSortedStringCollection(string fileOnePath, string fileSecondPath, string someRealString)
         {

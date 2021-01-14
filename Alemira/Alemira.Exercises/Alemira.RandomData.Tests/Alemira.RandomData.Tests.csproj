@@ -25,4 +25,13 @@
     <ProjectReference Include="..\Alemira.RandomData.Lib\Alemira.RandomData.Lib.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="TestData\fileOne.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\fileSecond.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
