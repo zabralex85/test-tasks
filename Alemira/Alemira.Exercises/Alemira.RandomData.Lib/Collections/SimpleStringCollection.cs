@@ -13,10 +13,10 @@ namespace Alemira.RandomData.Lib.Collections
         {
             if(string.IsNullOrEmpty(filePath)) return;
 
-            AppendData(filePath);
+            AppendDataFromFile(filePath);
         }
 
-        public void AppendData(string filePath)
+        public void AppendDataFromFile(string filePath)
         {
             if (string.IsNullOrEmpty(filePath)) 
                 throw new ArgumentException("File path is null");
@@ -36,76 +36,21 @@ namespace Alemira.RandomData.Lib.Collections
 
         public string Find(string value)
         {
-            return base.Find(x => x == value);
+            return base.Find(x => string.Equals(value, x, StringComparison.InvariantCulture));
         }
 
-        public string FindAfter(string value, bool saveOriginalList = true)
+        public string FindAfter(string value)
         {
-            return this.FindAfter(x => x == value, saveOriginalList);
-        }
-
-        public string FindAfter(Predicate<string> match, bool saveOriginalList = true)
-        {
-            if (saveOriginalList)
-                return FindAfterWithCopy(match);
-            
-            return FindAfterWithoutCopy(match);
-        }
-
-        private string FindAfterWithCopy(Predicate<string> match)
-        {
-            if (match == null)
+            if (value == null)
             {
                 throw new NullReferenceException();
             }
 
-            List<string> lastPart = null;
-            bool isFound = false;
-
-            for (int i = 0; i < this.Count; i++)
+            int index = base.FindIndex(x => string.Equals(value, x, StringComparison.InvariantCulture));
+            if (index != -1)
             {
-                if (!isFound)
-                {
-                    if (match(this[i]))
-                    {
-                        if (this.Count - i > 0)
-                        {
-                            lastPart = new List<string>(this.Count - i + 1);
-                        }
-
-                        isFound = true;
-                    }
-                }
-
-                lastPart?.Add(this[i]);
-            }
-
-            if (lastPart != null)
-            {
-                if (lastPart.Count > 0)
-                {
-                    lastPart.Sort(StringComparer.InvariantCultureIgnoreCase);
-                    return lastPart[0];
-                }
-            }
-
-            return null;
-        }
-
-        private string FindAfterWithoutCopy(Predicate<string> match)
-        {
-            if (match == null)
-            {
-                throw new NullReferenceException();
-            }
-            
-            for (int i = 0; i < this.Count; i++)
-            {
-                if (match(this[i]))
-                {
-                    Sort(i + 1, this.Count - i - 1, StringComparer.InvariantCultureIgnoreCase);
-                    return this[i + 1];
-                }
+                base.Sort(index + 1, this.Count - index - 1, StringComparer.Ordinal);
+                return this[index + 1];
             }
 
             return null;
